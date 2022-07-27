@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <p class="text-3xl">Hello theree</p>
+  <h1 class="text-4xl font-bold p-4 text-center">RC Job Board</h1>
 </body>
 
 </html>
