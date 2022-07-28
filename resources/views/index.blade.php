@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-layout page_title="Home">
+  <x-container>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  @vite('resources/css/app.css')
-  <title>Document</title>
-</head>
+    <h1 class="text-5xl font-bold mt-8 mb-1 text-center">RC Job Board</h1>
+    <p class="text-center text-gray-700 mb-8">Find a developer job anywhere in the world</p>
 
-<body>
-  <h1 class="text-4xl font-bold p-4 text-center">RC Job Board</h1>
-</body>
+    <input class="bg-gray-300 rounded-lg h-10 w-full px-2" type="text" placeholder="Search for jobs...">
 
-</html>
+  </x-container>
+</x-layout>

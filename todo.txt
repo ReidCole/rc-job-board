@@ -1,0 +1,22 @@
+- pages to build out
+  - /listings
+    - search bar at the top to search for specific jobs
+      - search bar on home screen redirects to here too
+      - url query: /jobs?search=something
+  - /account
+    - shows a user's created listings and applied-to listings
+    - can delete account
+
+- routes and controllers
+  - UserController
+    - /account
+    - /login
+    - /logout
+  - ListingController
+    - /listings
+    - /listings/{id}
+    - /listings/{id}/edit
+
+
+- authentication
+  - make log in, log out, and account links in navbar and sidebar shown or hidden depending on auth state
