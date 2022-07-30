@@ -14,9 +14,12 @@
   } ?></title>
 </head>
 
-<body>
+<body class="flex flex-col">
   <x-header />
   {{ $slot }}
+  <footer class="bg-gray-200 text-gray-600 p-4 text-center">
+    &copy; Reid Cole 2022
+  </footer>
 </body>
 
 </html>

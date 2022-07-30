@@ -1,4 +1,8 @@
 - pages to build out
+  - /
+    - buttons that link to pages
+      - build your resume (account page)
+      - post a job listing (create listing page)
   - /listings
     - search bar at the top to search for specific jobs
       - search bar on home screen redirects to here too
@@ -6,16 +10,8 @@
   - /account
     - shows a user's created listings and applied-to listings
     - can delete account
+    - if the user tries to access this link when not signed in, redirect them to the login page
 
-- routes and controllers
-  - UserController
-    - /account
-    - /login
-    - /logout
-  - ListingController
-    - /listings
-    - /listings/{id}
-    - /listings/{id}/edit
 
 
 - authentication

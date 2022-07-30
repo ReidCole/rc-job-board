@@ -21,6 +21,13 @@ class Listing extends Model
     'close_date'
   ];
 
+  public function scopeFilter($query, array $filters)
+  {
+    if (isset($filters['search'])) {
+      $query->where('title', 'like', '%' . $filters['search'] . '%')->orWhere('description', 'like', '%' . $filters['search'] . '%');
+    }
+  }
+
   public function user()
   {
     return $this->belongsTo(User::class, 'owner_user_id');

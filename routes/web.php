@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// listing routes
+
+Route::get('/listings', [ListingController::class, 'index']);
+
 Route::get('/', function () {
   return view('index');
 });
 
-Route::get('/listing/{id}', [ListingController::class, 'show']);
+Route::get('/listings/create', [ListingController::class, 'create']);
+
+Route::get('/listings/{id}/edit', [ListingController::class, 'edit']);
+
+Route::get('/listings/{id}', [ListingController::class, 'show']);
+
+Route::post('/listings', [ListingController::class, 'store']);
+
+Route::put('/listings/{id}', [ListingController::class, 'update']);
+
+Route::delete('/listings/{id}/delete', [ListingController::class, 'destroy']);
+
+// user routes
+
+Route::get('/signup', [UserController::class, 'signup']);
+
+Route::post('/users', [UserController::class, 'store']);
+
+Route::get('/account', [UserController::class, 'account']);
+
+Route::get('/login', [UserController::class, 'login']);
+
+Route::post('/authenticate', [UserController::class, 'authenticate']);
+
+Route::post('/logout', [UserController::class, 'logout']);

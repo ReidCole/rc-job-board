@@ -4,7 +4,7 @@
   <x-sidebar />
 
   {{-- header --}}
-  <header class="flex flex-row justify-between items-center h-14 bg-gray-200 border-b border-gray-300">
+  <header class="flex flex-row justify-between items-center h-14 bg-gray-200">
 
     {{-- mobile open sidebar button --}}
     <button class="sm:hidden p-2 h-full flex items-center" x-on:click="is_sidebar_open = ! is_sidebar_open">
@@ -26,7 +26,7 @@
           <x-icons.home /> Home
         </x-navbar-link>
 
-        <x-navbar-link href="/jobs">
+        <x-navbar-link href="/listings">
           <x-icons.briefcase /> Jobs
         </x-navbar-link>
 

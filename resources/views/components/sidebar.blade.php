@@ -1,6 +1,7 @@
   {{-- sidebar background --}}
   <div class="fixed h-screen w-screen bg-black opacity-70 z-10" x-show="is_sidebar_open"></div>
 
+  {{-- sidebar --}}
   <div class="h-screen w-52 bg-white fixed top-0 left-0 z-10" x-show="is_sidebar_open">
 
     {{-- top section --}}
@@ -20,7 +21,7 @@
         <x-icons.home /> Home
       </x-sidebar-link>
 
-      <x-sidebar-link href="/jobs">
+      <x-sidebar-link href="/listings">
         <x-icons.briefcase /> Jobs
       </x-sidebar-link>
 
