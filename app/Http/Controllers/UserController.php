@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -13,8 +16,24 @@ class UserController extends Controller
   }
 
   // create new user
-  public function store()
+  public function store(Request $request)
   {
+    $credentials = $request->validate([
+      'name' => ['required', 'min:3'],
+      'email' => ['required', 'email', Rule::unique('users', 'email')],
+      'password' => ['required', 'confirmed', 'min:6']
+    ]);
+
+    // hash password
+    $credentials['password'] = bcrypt($credentials['password']);
+
+    // create user
+    $user = User::create($credentials);
+
+    // login
+    Auth::login($user);
+
+    return redirect('/');
   }
 
   // update user info
@@ -36,15 +55,33 @@ class UserController extends Controller
   }
 
   // log in user
-  public function authenticate()
+  public function authenticate(Request $request)
   {
-    // todo: read about auth in documentation
+    $credentials = $request->validate([
+      'email' => ['required', 'email'],
+      'password' => ['required']
+    ]);
+
+    if (Auth::attempt($credentials)) {
+      $request->session()->regenerate();
+
+      return redirect()->intended('/');
+    } else {
+      return back()->withErrors([
+        'email' => 'Invalid credentials'
+      ])->onlyInput('email');
+    }
   }
 
   // log out user
-  public function logout()
+  public function logout(Request $request)
   {
     // todo: read about auth in documentation
-    auth()->logout();
+    Auth::logout();
+
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/');
   }
 }

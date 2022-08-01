@@ -11,10 +11,13 @@
       <x-icons.menu class="w-8 h-8" />
     </button>
 
+    @auth
+      <a href="#" class="sm:hidden p-2 h-full flex flex-row gap-1 text-lg items-center">
+        <x-icons.user-circle class="w-8 h-8" /> {{ auth()->user()->name }}
+      </a>
+    @endauth
     {{-- mobile account link --}}
-    <a href="#" class="sm:hidden p-2 h-full flex items-center">
-      <x-icons.user-circle class="w-8 h-8" />
-    </a>
+
 
     {{-- desktop navbar --}}
     <nav class="hidden sm:flex flex-row justify-between w-full h-full">
@@ -36,17 +39,19 @@
       {{-- right side --}}
       <span class="flex flex-row">
 
-        <x-navbar-link href="/login">
-          <x-icons.login /> Log In
-        </x-navbar-link>
+        @auth
+          <x-navbar-link href="/account">
+            <x-icons.user-circle /> {{ auth()->user()->name }}
+          </x-navbar-link>
 
-        <x-navbar-link href="/account">
-          <x-icons.user-circle /> Account
-        </x-navbar-link>
-
-        <x-navbar-link href="/logout">
-          <x-icons.logout /> Log Out
-        </x-navbar-link>
+          <x-navbar-link href="/logout" post>
+            <x-icons.logout /> Log Out
+          </x-navbar-link>
+        @else
+          <x-navbar-link href="/login">
+            <x-icons.login /> Log In
+          </x-navbar-link>
+        @endauth
 
       </span>
 

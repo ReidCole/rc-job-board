@@ -25,17 +25,19 @@
         <x-icons.briefcase /> Jobs
       </x-sidebar-link>
 
-      <x-sidebar-link href="/login">
-        <x-icons.login /> Log In
-      </x-sidebar-link>
+      @auth
+        <x-sidebar-link href="/account">
+          <x-icons.user-circle /> {{ auth()->user()->name }}
+        </x-sidebar-link>
 
-      <x-sidebar-link href="/account">
-        <x-icons.user-circle /> Account
-      </x-sidebar-link>
-
-      <x-sidebar-link href="/logout">
-        <x-icons.logout /> Log Out
-      </x-sidebar-link>
+        <x-sidebar-link href="/logout" post>
+          <x-icons.logout /> Log Out
+        </x-sidebar-link>
+      @else
+        <x-sidebar-link href="/login">
+          <x-icons.login /> Log In
+        </x-sidebar-link>
+      @endauth
 
     </div>
 
