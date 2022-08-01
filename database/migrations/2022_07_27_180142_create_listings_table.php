@@ -25,7 +25,7 @@ return new class extends Migration
       $table->string('logo')->nullable();
       $table->enum('location_type', ['on-site', 'remote', 'hybrid']);
       $table->string('location')->nullable();
-      $table->date('close_date')->nullable(); // when the job listing will automatically become closed 
+      $table->date('close_date')->nullable(); // when the job listing will become closed
     });
   }
 

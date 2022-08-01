@@ -5,7 +5,7 @@
   <div class="h-screen w-52 bg-white fixed top-0 left-0 z-10" x-show="is_sidebar_open">
 
     {{-- top section --}}
-    <div class="h-14 bg-gray-200 border-b border-gray-300 flex flex-row justify-end">
+    <div class="h-14 bg-gray-200 flex flex-row justify-end">
 
       {{-- close sidebar button --}}
       <button class="p-2 h-full flex items-center" x-on:click="is_sidebar_open = ! is_sidebar_open">

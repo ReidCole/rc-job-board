@@ -1,1 +1,55 @@
-<p>listing: {{ $listing->title }}</p>
+<x-layout>
+  <x-container>
+
+    <div class="flex flex-row items-center justify-between gap-3 my-6">
+      <div>
+        <h1 class="text-3xl">{{ $listing->title }}</h1>
+        <p class="italic">{{ $listing->company }}</p>
+      </div>
+      <img class="w-16 h-16" src="{{ $listing->logo ?? asset('storage/images/default.png') }}" alt="">
+    </div>
+
+
+    <h2 class="font-bold">Job Description</h2>
+    <p class="mb-6">{{ $listing->description }}</p>
+
+    <h2 class="font-bold">Location</h2>
+    <p class="mb-6">
+      @php
+        switch ($listing->location_type) {
+            case 'on-site':
+                echo 'On-Site';
+                break;
+            case 'remote':
+                echo 'Remote';
+                break;
+            case 'hybrid':
+                echo 'Hybrid';
+                break;
+        }
+      @endphp
+      {{ $listing->location ? ' - ' . $listing->location : null }}
+    </p>
+
+    <div class="flex flex-row gap-2 mb-6">
+      <x-button-link href="/listings/{{ $listing->id }}/apply" class="bg-blue-500">Apply</x-button-link>
+      <x-button-link href="mailto:{{ $listing->email }}" class="bg-green-500">Email employer</x-button-link>
+    </div>
+
+    <div class="mb-6 flex flex-row gap-4 justify-between italic">
+
+      @php
+        $created_at = date_create($listing->created_at);
+        $created_at_formatted = date_format($created_at, 'F j, Y');
+        echo '<p>Posted ' . $created_at_formatted . '</p>';
+        
+        $close_date = date_create($listing->close_date);
+        $close_date_formatted = date_format($close_date, 'F j, Y');
+        if (isset($listing->close_date)) {
+            echo '<p>Closes ' . $close_date_formatted . '</p>';
+        }
+      @endphp
+    </div>
+
+  </x-container>
+</x-layout>

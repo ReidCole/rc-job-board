@@ -7,9 +7,8 @@
     <x-searchbar />
 
     <div class="mt-14 mb-20 flex flex-row justify-evenly gap-4">
-      <a href="/account" class="bg-green-500 text-white px-4 py-2 rounded-lg cursor-pointer">Build your resume</a>
-      <a href="/listings/create" class="bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer">Post a job
-        listing</a>
+      <x-button-link href="/account" class="bg-green-500">Build your resume</x-button-link>
+      <x-button-link href="/listings/create" class="bg-blue-500">Post a listing</x-button-link>
     </div>
 
   </x-container>
