@@ -12,11 +12,12 @@
     </button>
 
     @auth
-      <a href="#" class="sm:hidden p-2 h-full flex flex-row gap-1 text-lg items-center">
+      {{-- mobile account link --}}
+      <a href="/account" class="sm:hidden p-2 h-full flex flex-row gap-1 text-lg items-center">
         <x-icons.user-circle class="w-8 h-8" /> {{ auth()->user()->name }}
       </a>
     @endauth
-    {{-- mobile account link --}}
+
 
 
     {{-- desktop navbar --}}

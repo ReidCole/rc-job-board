@@ -8,7 +8,7 @@
       <x-form-input type="email" name="email" text="Email" />
       <x-form-input type="password" name="password" text="Password" />
       <x-form-input type="password" name="password_confirmation" text="Confirm Password" />
-      <input class="bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer" type="submit" value="Sign Up">
+      <input class="bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer" type="submit" value="Sign up">
 
     </form>
     <a class="text-blue-600 underline text-center mb-6 block" href="/login">Already have an account? Log in here</a>

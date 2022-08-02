@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller
 {
@@ -42,8 +43,31 @@ class ListingController extends Controller
   }
 
   // create new listing
-  public function store()
+  public function store(Request $request)
   {
+    // required fields
+    $listing = $request->validate([
+      'title' => ['required', 'min:3'],
+      'description' => ['required', 'min:10'],
+      'company' => ['required'],
+      'email' => ['required', 'email'],
+      'location_type' => ['required'],
+    ]);
+
+    // optional fields
+    if ($request->hasFile('logo')) {
+      $listing['logo'] = $request->file('logo')->store('logos', 'public');
+    }
+    $listing['location'] = $request->input('location');
+    $listing['close_date'] = $request->input('close_date');
+
+    // owner
+    $listing['owner_user_id'] = Auth::id();
+
+    // create listing
+    Listing::create($listing);
+
+    return redirect('/account');
   }
 
   // update listing

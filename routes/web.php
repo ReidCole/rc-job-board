@@ -17,11 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 // listing routes
 
-Route::get('/listings', [ListingController::class, 'index']);
-
 Route::get('/', function () {
   return view('index');
 });
+
+Route::get('/listings', [ListingController::class, 'index']);
 
 Route::get('/listings/create', [ListingController::class, 'create']);
 
@@ -37,14 +37,14 @@ Route::delete('/listings/{id}/delete', [ListingController::class, 'destroy']);
 
 // user routes
 
-Route::get('/signup', [UserController::class, 'signup']);
+Route::get('/signup', [UserController::class, 'signup'])->middleware('guest');
 
 Route::post('/users', [UserController::class, 'store']);
 
-Route::get('/account', [UserController::class, 'account']);
+Route::get('/account', [UserController::class, 'account'])->middleware('auth');
 
-Route::get('/login', [UserController::class, 'login']);
+Route::get('/login', [UserController::class, 'login'])->middleware('guest');
 
 Route::post('/authenticate', [UserController::class, 'authenticate']);
 
-Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
