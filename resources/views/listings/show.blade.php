@@ -32,7 +32,11 @@
     </p>
 
     <div class="flex flex-row gap-2 mb-6">
-      <x-button-link href="/listings/{{ $listing->id }}/apply" class="bg-blue-500">Apply</x-button-link>
+      <form action="/listings/{{ $listing->id }}/apply" method="POST">
+        @csrf
+        <button class="text-white px-4 py-2 rounded-lg cursor-pointer block bg-blue-500" type="submit">Apply</button>
+      </form>
+
       <x-button-link href="mailto:{{ $listing->email }}" class="bg-green-500">Email employer</x-button-link>
     </div>
 

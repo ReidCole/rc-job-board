@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -48,3 +49,7 @@ Route::get('/login', [UserController::class, 'login'])->middleware('guest');
 Route::post('/authenticate', [UserController::class, 'authenticate']);
 
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+
+// application routes
+
+Route::post('/listings/{id}/apply', [ApplicationController::class, 'apply'])->middleware('auth');

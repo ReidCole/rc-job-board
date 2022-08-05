@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -44,8 +45,14 @@ class UserController extends Controller
   // show account page
   public function account()
   {
+    $postedListings = auth()->user()->listings()->get();
+    $appliedListings = auth()->user()->appliedListings();
+
     // todo: pass in account data with view
-    return view('users.account');
+    return view('users.account', [
+      'postedListings' => $postedListings,
+      'appliedListings' => $appliedListings
+    ]);
   }
 
   // show login page

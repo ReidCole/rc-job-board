@@ -4,7 +4,7 @@
 
     <div class="flex flex-col gap-2 py-2">
       @foreach ($listings as $listing)
-        <x-listing-item :listing="$listing" /> {{-- :listing is shorthand for x-bind:listing from alpinejs --}}
+        <x-listing-item :listing=$listing /> {{-- :listing is shorthand for x-bind:listing from alpinejs --}}
       @endforeach
     </div>
 
