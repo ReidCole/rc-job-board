@@ -6,7 +6,9 @@
         <h1 class="text-3xl">{{ $listing->title }}</h1>
         <p class="italic">{{ $listing->company }}</p>
       </div>
-      <img class="w-16 h-16" src="{{ $listing->logo ?? asset('storage/images/' . env('DEFAULT_LOGO')) }}" alt="">
+      <img class="w-16 h-16"
+        src="{{ $listing->logo ? asset('storage/' . $listing->logo) : asset('storage/logos/' . env('DEFAULT_LOGO')) }}"
+        alt="">
     </div>
 
 
@@ -38,6 +40,10 @@
       </form>
 
       <x-button-link href="mailto:{{ $listing->email }}" class="bg-green-500">Email employer</x-button-link>
+
+      @if (auth()->user()->id == $listing->owner_user_id)
+        <x-button-link href="/listings/{{ $listing->id }}/edit" class="bg-yellow-500">Edit listing</x-button-link>
+      @endif
     </div>
 
     <div class="mb-6 flex flex-row gap-4 justify-between italic">

@@ -32,7 +32,7 @@ Route::get('/listings/{id}', [ListingController::class, 'show']);
 
 Route::post('/listings', [ListingController::class, 'store']);
 
-Route::put('/listings/{id}', [ListingController::class, 'update']);
+Route::put('/listings/{listing}', [ListingController::class, 'update']);
 
 Route::delete('/listings/{id}/delete', [ListingController::class, 'destroy']);
 

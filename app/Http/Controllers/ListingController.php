@@ -46,7 +46,7 @@ class ListingController extends Controller
   public function store(Request $request)
   {
     // required fields
-    $listing = $request->validate([
+    $data = $request->validate([
       'title' => ['required', 'min:3'],
       'description' => ['required', 'min:10'],
       'company' => ['required'],
@@ -56,23 +56,43 @@ class ListingController extends Controller
 
     // optional fields
     if ($request->hasFile('logo')) {
-      $listing['logo'] = $request->file('logo')->store('logos', 'public');
+      $data['logo'] = $request->file('logo')->store('logos', 'public');
     }
-    $listing['location'] = $request->input('location');
-    $listing['close_date'] = $request->input('close_date');
+    $data['location'] = $request->input('location');
+    $data['close_date'] = $request->input('close_date');
 
     // owner
-    $listing['owner_user_id'] = Auth::id();
+    $data['owner_user_id'] = Auth::id();
 
     // create listing
-    Listing::create($listing);
+    Listing::create($data);
 
     return redirect('/account');
   }
 
   // update listing
-  public function update()
+  public function update(Request $request, Listing $listing)
   {
+    // make sure logged in user is owner
+    if ($listing->owner_user_id != auth()->id()) {
+      abort(403, 'Unauthorized action');
+    }
+
+    $data = $request->validate([
+      'title' => ['required', 'min:3'],
+      'description' => ['required', 'min:10'],
+      'company' => ['required'],
+      'email' => ['required', 'email'],
+      'location_type' => ['required'],
+    ]);
+
+    if ($request->hasFile('logo')) {
+      $data['logo'] = $request->file('logo')->store('logos', 'public');
+    }
+
+    $listing->update($data);
+
+    return back();
   }
 
   // delete listing
