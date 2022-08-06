@@ -6,7 +6,7 @@
         <h1 class="text-3xl">{{ $listing->title }}</h1>
         <p class="italic">{{ $listing->company }}</p>
       </div>
-      <img class="w-16 h-16" src="{{ $listing->logo ?? asset('storage/images/default.png') }}" alt="">
+      <img class="w-16 h-16" src="{{ $listing->logo ?? asset('storage/images/' . env('DEFAULT_LOGO')) }}" alt="">
     </div>
 
 
