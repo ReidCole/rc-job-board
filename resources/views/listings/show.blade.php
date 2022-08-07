@@ -41,8 +41,14 @@
 
       <x-button-link href="mailto:{{ $listing->email }}" class="bg-green-500">Email employer</x-button-link>
 
-      @if (auth()->user()->id == $listing->owner_user_id)
-        <x-button-link href="/listings/{{ $listing->id }}/edit" class="bg-yellow-500">Edit listing</x-button-link>
+      @if (auth()->user() != null && auth()->user()->id == $listing->owner_user_id)
+        <x-button-link href="/listings/{{ $listing->id }}/edit" class="bg-yellow-500">Edit</x-button-link>
+
+        <form action="/listings/{{ $listing->id }}/delete" method="POST">
+          @csrf
+          @method('DELETE')
+          <button class="text-white px-4 py-2 rounded-lg cursor-pointer block bg-red-500" type="submit">Delete</button>
+        </form>
       @endif
     </div>
 

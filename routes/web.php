@@ -34,7 +34,7 @@ Route::post('/listings', [ListingController::class, 'store']);
 
 Route::put('/listings/{listing}', [ListingController::class, 'update']);
 
-Route::delete('/listings/{id}/delete', [ListingController::class, 'destroy']);
+Route::delete('/listings/{listing}/delete', [ListingController::class, 'destroy']);
 
 // user routes
 
