@@ -36,6 +36,8 @@ Route::put('/listings/{listing}', [ListingController::class, 'update']);
 
 Route::delete('/listings/{listing}/delete', [ListingController::class, 'destroy']);
 
+Route::get('/practice', [ListingController::class, 'practice']);
+
 // user routes
 
 Route::get('/signup', [UserController::class, 'signup'])->middleware('guest');
@@ -44,7 +46,7 @@ Route::post('/users', [UserController::class, 'store']);
 
 Route::get('/account', [UserController::class, 'account'])->middleware('auth');
 
-Route::get('/login', [UserController::class, 'login'])->middleware('guest');
+Route::get('/login', [UserController::class, 'login'])->middleware('guest')->name('login');
 
 Route::post('/authenticate', [UserController::class, 'authenticate']);
 

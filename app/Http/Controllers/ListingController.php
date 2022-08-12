@@ -107,4 +107,11 @@ class ListingController extends Controller
 
     return redirect('/listings');
   }
+
+  // random practice function to keep skills sharp
+  public function practice(Request $request)
+  {
+    $id = random_int(0, Listing::all()->count());
+    return redirect("/listings/$id");
+  }
 }
